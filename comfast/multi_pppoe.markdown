@@ -63,9 +63,10 @@ Connection: close
 
 {
   "action": "one_click_redial",
-  "phy_interface": "br-wan && ls / > /www-comfast/ls.txt",
+  "phy_interface": "br-wan && ls / > /www-comfast/test.txt",
   "real_num": 1
 }
+
 ```
 
 - **Steps**:
