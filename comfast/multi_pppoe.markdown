@@ -2,9 +2,11 @@
 
 ## Overview
 The COMFAST CF-XR11 is an 1800Mbps smart MESH router supporting multiple WAN configurations (e.g., PPPoE, DHCP, static IP) and Wi-Fi Portal authentication.
-![PoC 2 Result: Root Directory Listing](./imgs/0.png)
 
 A command injection vulnerability exists in the COMFAST CF-XR11 (firmware V2.7.2) in the `multi_pppoe` API (`/usr/bin/webmgnt`, function `sub_423930`). Attackers can inject arbitrary commands via the `phy_interface` parameter in a POST request to `/cgi-bin/mbox-config?method=SET&section=multi_pppoe`, enabling unauthorized access or full device compromise.
+
+![PoC 2 Result: Root Directory Listing](./imgs/0.png)
+
 
 ## Details
 - **Vendor**: COMFAST
@@ -68,8 +70,8 @@ Connection: close
 
 - **Steps**:
   1. Send the request.
-  2. Access `http://cflogin.cn/ls.txt` to view the root directory listing.
-- **Result**: The root directory listing is written to `/www-comfast/ls.txt`.
+  2. Access `http://cflogin.cn/test.txt` to view the root directory listing.
+- **Result**: The root directory listing is written to `/www-comfast/test.txt`.
 
 ![PoC 2 Result: Root Directory Listing](./imgs/4.png)
 ![PoC 2 Result: Root Directory Listing](./imgs/5.png)
