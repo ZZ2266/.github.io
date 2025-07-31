@@ -1,7 +1,7 @@
 # COMFAST CF-XR11 V2.7.2 Command Injection in `multi_pppoe`
 
 ## Overview
-A command injection vulnerability exists in the COMFAST CF-XR11 (firmware V2.7.2) in the "multi_pppoe" API ("/usr/bin/webmgnt", function "sub_423930"). Attackers can inject arbitrary commands via the `phy_interface` parameter in a POST request to "/cgi-bin/mbox-config?method=SET&section=multi_pppoe", enabling unauthorized access or full device compromise.
+A command injection vulnerability exists in the COMFAST CF-XR11 (firmware V2.7.2) in the "multi_pppoe" API ("/usr/bin/webmgnt", function "sub_423930"). Attackers can inject arbitrary commands via the "phy_interface" parameter in a POST request to "/cgi-bin/mbox-config?method=SET&section=multi_pppoe", enabling unauthorized access or full device compromise.
 
 ## Details
 - **Product**: COMFAST CF-XR11
