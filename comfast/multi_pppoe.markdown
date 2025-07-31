@@ -13,7 +13,7 @@ A command injection vulnerability exists in the COMFAST CF-XR11 (firmware V2.7.2
 
 ### Description
 The `phy_interface` parameter is unsanitized and used in a `system` call (`sprintf(v78, "ifdown %s; ifup %s", v76, v76)`). When `action` is set to `"one_click_redial"`, malicious input in `phy_interface` (e.g., `br-wan && cat /etc/shadow > /www-comfast/test.txt`) executes arbitrary commands.
-
+![PoC 2 Result: Root Directory Listing](./imgs/1.png)
 ## Proof of Concept (PoC)
 
 ### PoC 1: Dump `/etc/shadow`
@@ -37,7 +37,8 @@ Connection: close
   2. Access `http://cflogin.cn/test.txt` to view `/etc/shadow`.
 - **Result**: The `/etc/shadow` file is written to `/www-comfast/test.txt`.
 
-![PoC 1 Result: /etc/shadow Output](./images/poc1_shadow_output.png)
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
+![PoC 2 Result: Root Directory Listing](./imgs/3.png)
 
 ### PoC 2: List Root Directory (`ls /`)
 ```http
@@ -59,7 +60,7 @@ Connection: close
   1. Send the request.
   2. Access `http://cflogin.cn/ls.txt` to view the root directory listing.
 - **Result**: The root directory listing is written to `/www-comfast/ls.txt`.
-
+![PoC 2 Result: Root Directory Listing](./imgs/4.png)
 ![PoC 2 Result: Root Directory Listing](./imgs/5.png)
 
 ## Affected Versions
