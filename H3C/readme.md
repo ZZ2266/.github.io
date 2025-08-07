@@ -14,8 +14,8 @@ An insecure default password vulnerability was identified in the H3C device runn
   - Potential Code Execution
 - **Affected Component**: `/etc/shadow` file, user authentication mechanism
 - **CVE ID**: Pending (CVE application in progress)
-- **Discovered by**: Anonymous Researcher
-- **Firmware**: Not publicly specified
+- **Discovered by**: n0ps1ed (n0ps1edzz@gmail.com)
+- **Firmware**: https://www.h3c.com/cn/d_202504/2407151_30005_0.htm
 
 ## Discovery
 The vulnerability was discovered by analyzing the firmware (_NX15V100R015.bin). The `/etc/shadow` file was extracted from the squashfs-root directory, revealing that the root user has no password set (`NO PASSWORD`) and the H3C user's MD5-crypt hash was cracked using John the Ripper, yielding the password "admin." These weak credentials allow attackers to log in to the device’s administrative interface or other services without additional exploits.
@@ -24,10 +24,7 @@ The vulnerability was discovered by analyzing the firmware (_NX15V100R015.bin). 
 1. Extract the firmware image `_NX15V100R015.bin`.
 2. Locate the `/etc/shadow` file in the extracted squashfs-root directory (`squashfs-root/etc/shadow`).
 3. Observe the root user entry with `NO PASSWORD` or use a password-cracking tool (e.g., John the Ripper) to crack the H3C user’s MD5-crypt hash:
-   ```
-   root:NO PASSWORD:0:0:99999:7:::
-   H3C:admin:19175:0:99999:7:::
-   ```
+![PoC 2 Result: Root Directory Listing](./img/1.png)
 4. Attempt to log in to the device’s administrative interface or other network-accessible services using the credentials `root` (no password) or `H3C:admin`.
 
 ## Impact
