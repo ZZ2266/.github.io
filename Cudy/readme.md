@@ -1,4 +1,4 @@
-# Security Advisory: Insecure Default Password in Cudy WR1200EA Router
+# Insecure Default Password in Cudy WR1200EA Router
 
 ## Overview
 An insecure default password vulnerability was identified in the Cudy WR1200EA router, version 2.3.7. The root user account uses a default password，which is stored in the `/etc/shadow` file using an MD5-crypt hash. This weak password can be easily decrypted using tools like John the Ripper or directly used to log in to the router's web interface or other network-accessible services, allowing attackers to gain unauthorized root access.
