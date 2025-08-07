@@ -27,7 +27,8 @@ The vulnerability was discovered by analyzing the firmware (_NX15V100R015.bin). 
    
 ![PoC 2 Result: Root Directory Listing](./img/1.png)
 ![PoC 2 Result: Root Directory Listing](./img/2.png)
-5. Attempt to log in to the device’s administrative interface or other network-accessible services using the credentials `root` (no password) or `H3C:admin`.
+
+4. Attempt to log in to the device’s administrative interface or other network-accessible services using the credentials `root` (no password) or `H3C:admin`.
 
 ## Impact
 An attacker with network access to the device can:
