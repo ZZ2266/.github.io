@@ -15,7 +15,8 @@ An insecure default password vulnerability was identified in the Cudy WR1200EA r
   - Potential Code Execution
 - **Affected Component**: `/etc/shadow` file, root user authentication mechanism
 - **CVE ID**: Pending (CVE application in progress)
-- **Discovered by**:n0ps1ed (n0ps1edzz@gmail.com)
+- **Discovered by**: n0ps1ed (n0ps1edzz@gmail.com)
+- **firmware**: https://www.cudy.com/zh-cn/pages/download-center/wr1200e-1-0
 
 ## Discovery
 The vulnerability was discovered by analyzing the firmware (WR1200EA-R62-2.3.7-20250113-121810-flash.bin). The `/etc/shadow` file was extracted, and the root user's MD5-crypt hash was cracked using John the Ripper, revealing the default password "admin." This weak credential allows attackers to log in to the router's administrative interface or other services without additional exploits.
