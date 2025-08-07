@@ -25,7 +25,7 @@ The vulnerability was discovered by analyzing the firmware (WR1200EA-R62-2.3.7-2
 1. Extract the firmware image `WR1200EA-R62-2.3.7-20250113-121810-flash.bin`.
 2. Locate the `/etc/shadow` file in the extracted squashfs-root directory.
 3. Use a password-cracking tool (e.g., John the Ripper) to crack the MD5-crypt hash for the root user:
-![PoC 2 Result: Root Directory Listing](./imgs/1.png)
+![PoC 2 Result: Root Directory Listing](./img/1.png)
 4. Alternatively, attempt to log in to the router's web interface or other services using the credentials `root:admin`.
 
 ## Impact
