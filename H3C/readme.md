@@ -24,8 +24,10 @@ The vulnerability was discovered by analyzing the firmware (_NX15V100R015.bin). 
 1. Extract the firmware image `_NX15V100R015.bin`.
 2. Locate the `/etc/shadow` file in the extracted squashfs-root directory (`squashfs-root/etc/shadow`).
 3. Observe the root user entry with `NO PASSWORD` or use a password-cracking tool (e.g., John the Ripper) to crack the H3C user’s MD5-crypt hash:
+   
 ![PoC 2 Result: Root Directory Listing](./img/1.png)
-4. Attempt to log in to the device’s administrative interface or other network-accessible services using the credentials `root` (no password) or `H3C:admin`.
+![PoC 2 Result: Root Directory Listing](./img/2.png)
+5. Attempt to log in to the device’s administrative interface or other network-accessible services using the credentials `root` (no password) or `H3C:admin`.
 
 ## Impact
 An attacker with network access to the device can:
