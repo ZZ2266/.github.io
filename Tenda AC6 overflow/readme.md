@@ -2,7 +2,7 @@
 
 ## Summary
 A stack-based buffer overflow vulnerability in the Tenda AC6V1.0 router (firmware V15.03.05.19) allows unauthenticated remote attackers to execute arbitrary code or cause denial of service (DoS) via the `deviceList` parameter in the `/goform/setMacFilterCfg` endpoint. The flaw resides in the `sub_BE73C` function (aliased as `parse_macfilter_rule`), which uses unsafe `strcpy` operations without bounds checking, enabling stack corruption.
-![PoC 2 Result: Root Directory Listing](./img/0.png)
+![PoC 2 Result: Root Directory Listing](./imgs/0.png)
 ## Details
 - **Vendor**: Tenda
 - **Product**: Tenda AC6V1.0 
@@ -15,7 +15,7 @@ A stack-based buffer overflow vulnerability in the Tenda AC6V1.0 router (firmwar
 
 ## Description
 The vulnerability exists in the `formSetMacFilterCfg` function, which processes HTTP POST requests to `/goform/setMacFilterCfg`. The `deviceList` parameter is passed to `sub_BD758` and then to `sub_BE73C` (parse_macfilter_rule). The portion after `\r` is copied into a fixed-size buffer using `strcpy(a2, src)` without length validation. If the input exceeds the buffer size, it overflows the stack, potentially overwriting return addresses or other critical data.
-![PoC 2 Result: Root Directory Listing](./img/1.png)
+![PoC 2 Result: Root Directory Listing](./imgs/1.png)
 This allows attackers to:
 - Cause a denial of service (DoS) by crashing the router.
 - Achieve remote code execution (RCE) by crafting a payload with ROP gadgets.
@@ -35,7 +35,7 @@ response = requests.post(url, cookies=cookie, data=data)
 response = requests.post(url, cookies=cookie, data=data)  # Double POST to bypass potential checks
 print(response.text)
 ```
-![PoC 2 Result: Root Directory Listing](./img/2.png)
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 
 ## Impact
 - **Denial of Service (DoS)**: The oversized payload crashes the router’s web server, disrupting network connectivity and management access.
