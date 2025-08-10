@@ -1,7 +1,7 @@
-# Tenda AC Series Routers Command Injection in formSetIptv
+# Tenda AC6 Routers Command Injection in formSetIptv
 
 ## Overview
-Tenda AC Series Routers (e.g., AC15, AC23) are consumer-grade wireless routers supporting IPTV configuration, firewall, and multi-WAN features. A command injection vulnerability exists in the formSetIptv function, which handles requests to the /goform/SetIPTVCfg endpoint. Attackers can inject arbitrary system commands via the list or vlanId parameters, leading to unauthorized device control or complete compromise.
+Tenda AC6 Router is a consumer-grade wireless router supporting IPTV configuration, firewall, and multi-WAN features. A command injection vulnerability exists in the formSetIptv function, which handles requests to the /goform/SetIPTVCfg endpoint. Attackers can inject arbitrary system commands via the list or vlanId parameters, leading to unauthorized device control or complete compromise.
 ![PoC 2 Result: Root Directory Listing](./imgs/0.png)
 
 
