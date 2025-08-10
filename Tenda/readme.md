@@ -1,4 +1,4 @@
-# Tenda AC6 Routers Command Injection in formSetIptv
+# Tenda AC6 Routers Command Injection in SetIPTVCfg
 
 ## Overview
 Tenda AC6 Router is a consumer-grade wireless router supporting IPTV configuration, firewall, and multi-WAN features. A command injection vulnerability exists in the formSetIptv function, which handles requests to the /goform/SetIPTVCfg endpoint. Attackers can inject arbitrary system commands via the list or vlanId parameters, leading to unauthorized device control or complete compromise.
