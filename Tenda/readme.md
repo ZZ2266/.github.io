@@ -11,7 +11,7 @@ Tenda AC Series Routers (e.g., AC15, AC23) are consumer-grade wireless routers s
 - **Product**: Tenda AC Series Routers
 - **Firmware**: Tenda AC6V1.0 V15.03.05.19
 - **Firmware Download**: [https://tenda.com.cn/material/show/2681]
-- **Endpoint**: `- **Website**: [https://www.tenda.com.cn/`
+- **Endpoint**: /goform/SetIPTVCfg
 - **Vulnerability**: Command Injection
 - **CVE ID**: Pending
 - **Impact**: Execute arbitrary commands, access sensitive files, or gain full control.
