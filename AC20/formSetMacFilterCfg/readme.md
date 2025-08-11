@@ -15,7 +15,7 @@ A stack-based buffer overflow vulnerability in the Tenda AC20 router (firmware V
 
 *   **Firmware Download**: [https://www.tenda.com.cn/material/show/3264](https://www.tenda.com.cn/material/show/3264)
 
-*   **Component**: `/goform/setMacFilterCfg` (functions `formSetMacFilterCfg` and `sub_46A2AC`)
+*   **Component**: `/goform/setMacFilterCfg`
 
 *   **Vulnerability Type**: Stack-Based Buffer Overflow (CWE-121)
 
