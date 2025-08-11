@@ -8,7 +8,7 @@ Tenda AC9 V1.0 Router is a consumer-grade wireless router supporting advanced wi
 - **Website**: [https://www.tenda.com.cn/]
 - **Product**: Tenda AC9 V1.0 Router
 - **Firmware**: V15.03.05.19(6318)
-- **Firmware Download**: [https://www.tenda.com.cn/download/detail-2681.html]
+- **Firmware Download**: [https://www.tenda.com.cn/download/detail-2682.html]
 - **Endpoint**: `/goform/WriteFacMac`
 - **Vulnerability**: Command Injection
 - **CVE ID**: Pending
