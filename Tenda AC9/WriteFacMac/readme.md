@@ -18,6 +18,7 @@ Tenda AC9 V1.0 Router is a consumer-grade wireless router supporting advanced wi
 ### Description
 The `formWriteFacMac` function processes POST requests to `/goform/WriteFacMac`. It extracts the user-controlled `mac` parameter via `sub_2B9D4` (a parameter parsing function) and passes it directly to `doSystemCmd`. In `doSystemCmd`, the parameter is interpolated into a system command (e.g., `cfm mac %s`) without any input sanitization. The command is executed directly on the system. By injecting special characters (e.g., `;`), attackers can escape the command context and execute arbitrary system commands on the router.
 ![PoC 2 Result: Root Directory Listing](./imgs/1.png)
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 ## Proof of Concept (PoC)
 
 ### PoC 1: Execute `ls` Command
@@ -36,4 +37,4 @@ Connection: keep-alive
 Content-Length: 24
 mac=00:01:02:11:22:33;ls
 ```
-![PoC 2 Result: Root Directory Listing](./imgs/2.png)
+![PoC 2 Result: Root Directory Listing](./imgs/3.png)
