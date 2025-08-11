@@ -13,7 +13,7 @@ Tenda AC9 V1.0 Router is a consumer-grade wireless router supporting advanced wi
 - **Vulnerability**: Command Injection
 - **CVE ID**: Pending
 - **Impact**: Execute arbitrary commands, access sensitive files, or gain full control.
-- **Reported by**: Anonymous Researcher
+- **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
 
 ### Description
 The `formWriteFacMac` function processes POST requests to `/goform/WriteFacMac`. It extracts the user-controlled `mac` parameter via `sub_2B9D4` (a parameter parsing function) and passes it directly to `doSystemCmd`. In `doSystemCmd`, the parameter is interpolated into a system command (e.g., `cfm mac %s`) without any input sanitization. The command is executed directly on the system. By injecting special characters (e.g., `;`), attackers can escape the command context and execute arbitrary system commands on the router.
