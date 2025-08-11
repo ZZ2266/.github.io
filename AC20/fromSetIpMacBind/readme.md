@@ -59,6 +59,6 @@ res = requests.post(url, cookies=cookie, data=data)
 res = requests.post(url, cookies=cookie, data=data)
 print(res.text)
 ```
-![PoC 2 Result: Root Directory Listing](./imgs/3.png)
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 
 This script sends a crafted `list` parameter containing an overly long IP-MAC binding rule segment. When processed by `sub_48E628`, the `strcpy(v4, (char *)*a2)` call will overflow the `v4` buffer, causing stack corruption. Successful exploitation may result in arbitrary code execution or a denial of service condition (router crash/reboot).
