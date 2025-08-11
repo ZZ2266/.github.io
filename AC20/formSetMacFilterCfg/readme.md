@@ -25,18 +25,28 @@ A stack-based buffer overflow vulnerability in the Tenda AC20 router (firmware V
 
 ## Description
 
-The vulnerability exists in the `formSetMacFilterCfg` function, which handles HTTP POST requests to the `/goform/setMacFilterCfg` endpoint. The `deviceList` parameter is retrieved via `websGetVar` and passed to the `sub_46A2AC` function for processing.
+The vulnerability exists in the processing chain of the `deviceList` parameter in the `formSetMacFilterCfg` function. The call chain and key operations are as follows:
 
-Analysis of the code indicates that `sub_46A2AC` processes the `deviceList` input, potentially using unsafe string operations (e.g., `strcpy`) to copy data from `deviceList` into a fixed-size stack buffer. When `deviceList` contains a `\r` (carriage return) followed by an overly long payload, the portion after `\r` is copied without validating its length against the buffer size. This causes the stack buffer to overflow, overwriting adjacent memory (including return addresses, saved registers, or other critical data).
 
-This vulnerability allows attackers to:
 
+1.  **Parameter Retrieval**: The `deviceList` parameter is retrieved via `websGetVar` in `formSetMacFilterCfg` and passed to `sub_46A2AC` for rule processing.
+
+2.  **Rule Parsing**: `sub_46A2AC` splits `deviceList` by newline characters (`\n`) and iterates over each entry, passing them to `sub_46A8F8` for individual rule handling.
+
+3.  **Data Extraction**: `sub_46A8F8` calls `sub_46BC10` to parse each entry. `sub_46BC10` uses `strchr` to split the entry by carriage return (`\r`), separating it into a "name" part (before `\r`) and a "MAC address" part (after `\r`).
+
+4.  **Unsafe Copy**: Critical unsafe operations occur in `sub_46BC10`:
+
+*   `strcpy(a2 + 32, a1)`: Copies the "name" part (user-controlled) into a 32-byte offset of a fixed-size stack buffer (`v5` in `sub_46A8F8`, size 160 bytes).
+
+*   `strcpy(a2, v4)`: Copies the "MAC address" part (user-controlled) into the start of the same buffer.
+
+Neither `strcpy` call validates the length of the input against the buffer size. If the "name" or "MAC address" parts exceed the remaining buffer space, they overflow the stack buffer, overwriting adjacent memory (including return addresses, saved registers, and other critical stack data).
 ![PoC 2 Result: Root Directory Listing](./imgs/0.png)
 ![PoC 2 Result: Root Directory Listing](./imgs/1.png)
-
-*   Cause a denial of service (DoS) by crashing the router’s web management service.
-
-*   Achieve remote code execution (RCE) by crafting a malicious payload with ROP gadgets to control program flow.
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
+![PoC 2 Result: Root Directory Listing](./imgs/3.png)
+![PoC 2 Result: Root Directory Listing](./imgs/4.png)
 
 ## PoC: Python Exploit Script
 
@@ -52,4 +62,4 @@ res = requests.post(url, cookies=cookie, data=data)
 res = requests.post(url, cookies=cookie, data=data)
 print(res.text)
 ```
-![PoC 2 Result: Root Directory Listing](./imgs/2.png)
+![PoC 2 Result: Root Directory Listing](./imgs/5.png)
