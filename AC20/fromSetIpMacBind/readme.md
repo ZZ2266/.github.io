@@ -40,7 +40,7 @@ The vulnerability exists in the processing chain of the `list` parameter in the 
 
 *   `strcpy` does not validate the length of the input against the size of `v4`. If the rule segment exceeds 127 bytes (plus the null terminator), it will overflow the `v4` buffer.
 
-1.  **Subsequent Parsing**: After the unsafe copy, `sscanf` is used to parse fields from `v4` (e.g., device name, MAC address, IP address). However, the prior `strcpy` already introduces the overflow risk, as the buffer may have already been corrupted before parsing.
+4.  **Subsequent Parsing**: After the unsafe copy, `sscanf` is used to parse fields from `v4` (e.g., device name, MAC address, IP address). However, the prior `strcpy` already introduces the overflow risk, as the buffer may have already been corrupted before parsing.
 
 If the user-controlled `list` parameter contains a rule segment longer than 127 bytes, `strcpy(v4, (char *)*a2)` will overflow the 128-byte `v4` buffer, overwriting adjacent stack memory (including return addresses, saved registers, and other critical stack data). This allows an attacker to corrupt the stack and potentially execute arbitrary code.
 ![PoC 2 Result: Root Directory Listing](./imgs/0.png)
