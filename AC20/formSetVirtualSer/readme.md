@@ -43,6 +43,8 @@ The vulnerability exists in the processing chain of the `list` parameter in the 
 *   No bounds checking is performed on the length of the parsed fields (`v12` to `v15`), which are directly derived from the user-controlled `list` parameter.
 
 If any of the parsed fields are sufficiently long, the `sprintf` call will overflow the 256-byte `v11` buffer, overwriting adjacent stack memory (including return addresses, saved registers, and other critical stack data). This allows an attacker to corrupt the stack and potentially execute arbitrary code.
+![PoC 2 Result: Root Directory Listing](./imgs/0.png)
+![PoC 2 Result: Root Directory Listing](./imgs/1.png)
 
 ## PoC: Python Exploit Script
 
@@ -56,5 +58,5 @@ res = requests.post(url, cookies=cookie, data=data)
 res = requests.post(url, cookies=cookie, data=data)
 print(res.text)
 ```
-
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 This script sends a crafted `list` parameter containing an overly long fourth field. When processed by `save_virtualser_data`, the `sprintf` call will overflow the `v11` buffer, causing stack corruption. Successful exploitation may result in arbitrary code execution or a denial of service condition (router crash/reboot).
