@@ -42,7 +42,7 @@ Key operations in the `TendaTelnet` function are as follows:
 
 *   It then starts a new telnet service bound to the retrieved LAN IP via `doSystemCmd("telnetd -b %s &", (const char *)v17)`, where `%s` is replaced with the LAN IP from `v17`.
 
-1.  **Response**: The function returns a success message "load telnetd success." via `websWrite` with a 200 HTTP status code.
+4.  **Response**: The function returns a success message "load telnetd success." via `websWrite` with a 200 HTTP status code.
 
 Critical issues in this flow:
 
