@@ -47,6 +47,7 @@ Key operations in the `TendaTelnet` function are as follows:
 Critical issues in this flow:
 
 *   Activation of telnetd allows attackers to connect to the router's telnet service and execute arbitrary system commands with root privileges (typical for router environments).
+*   ![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 
 ## PoC: Exploit Steps
 
