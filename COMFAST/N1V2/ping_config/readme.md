@@ -1,5 +1,7 @@
 # COMFAST CF-N1 V2 V2.6.0 Command Injection in `ping_config`
 
+PS：Using tools like qemu to set up the environment may be difficult; it is recommended to purchase a physical device.
+
 ## Overview
 
 A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.0) in the `ping_config` API (`/usr/bin/webmgnt`, function `sub_441EC4`). Attackers can inject arbitrary commands via a user-controlled parameter involved in ping configuration, enabling unauthorized execution of system commands, sensitive information access, or full device compromise.
@@ -84,7 +86,6 @@ Connection: close
 
 {"ping\_target":"8.8.8.8 && ls /etc > /www-comfast/ping\_test.txt","count":4,"timeout":2}
 ```
-
 
 
 *   **Assumptions**: The vulnerable parameter is named `ping_target` (adjust if the actual parameter name differs based on further analysis).
