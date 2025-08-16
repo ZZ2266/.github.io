@@ -76,7 +76,7 @@ Connection: close
 ```
 
 
-*   **Assumptions**: The vulnerable parameter is named `destination` (adjust if the actual parameter name differs based on further analysis).
+*   **Assumptions**: The vulnerable parameter is named `destination`.
 
 *   **Steps**:
 
