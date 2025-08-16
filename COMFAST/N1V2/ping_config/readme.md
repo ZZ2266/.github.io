@@ -1,10 +1,8 @@
-# COMFAST CF-XR11 V2.7.2 Command Injection in `ping_config`
+# COMFAST CF-N1 V2 V2.6.0 Command Injection in `ping_config`
 
 ## Overview
 
-The COMFAST CF-XR11 is an 1800Mbps smart MESH router supporting multiple WAN configurations (e.g., PPPoE, DHCP, static IP) and Wi-Fi Portal authentication.
-
-A command injection vulnerability exists in the COMFAST CF-XR11 (firmware V2.7.2) in the `ping_config` API (`/usr/bin/webmgnt`, function `sub_441EC4`). Attackers can inject arbitrary commands via a user-controlled parameter involved in ping configuration, enabling unauthorized execution of system commands, sensitive information access, or full device compromise.
+A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.0) in the `ping_config` API (`/usr/bin/webmgnt`, function `sub_441EC4`). Attackers can inject arbitrary commands via a user-controlled parameter involved in ping configuration, enabling unauthorized execution of system commands, sensitive information access, or full device compromise.
 
 ## Details
 
@@ -14,11 +12,11 @@ A command injection vulnerability exists in the COMFAST CF-XR11 (firmware V2.7.2
 
 *   **Vendor Website**: [http://www.comfast.cn/](http://www.comfast.cn/)
 
-*   **Product**: COMFAST CF-XR11
+*   **Product**: COMFAST CF-N1 V2
 
-*   **Firmware**: V2.7.2
+*   **Firmware**: V2.6.0
 
-*   **Firmware Download**: [http://dl.comfast.cn/firmware/CF-XR11-V2.7.2.rar](http://dl.comfast.cn/firmware/CF-XR11-V2.7.2.rar)
+*   **Firmware Download**: [http://dl.comfast.cn/firmware/CF-N1](http://dl.comfast.cn/firmware/CF-N1) V2-V2.6.0.rar
 
 *   **Endpoint**: `/cgi-bin/mbox-config?method=SET&section=ping_config`
 
@@ -98,7 +96,7 @@ Connection: close
 
 
 
-*   COMFAST CF-XR11 V2.7.2 (other versions may also be affected; verification recommended)
+*   COMFAST CF-N1 V2 V2.6.0 (other versions may also be affected; verification recommended)
 
 ## Mitigation Recommendations
 
