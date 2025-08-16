@@ -4,6 +4,8 @@
 
 A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.0) in the `ping_config` API (`/usr/bin/webmgnt`, function `sub_441EC4`). Attackers can inject arbitrary commands via a user-controlled parameter involved in ping configuration, enabling unauthorized execution of system commands, sensitive information access, or full device compromise.
 
+![PoC 2 Result: Root Directory Listing](./imgs/0.png)
+
 ## Details
 
 
@@ -16,7 +18,7 @@ A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.
 
 *   **Firmware**: V2.6.0
 
-*   **Firmware Download**: [http://dl.comfast.cn/firmware/CF-N1](http://dl.comfast.cn/firmware/CF-N1) V2-V2.6.0.rar
+*   **Firmware Download**: http://www.comfast.com.cn/index.php?m=content&c=index&a=show&catid=31&id=772
 
 *   **Endpoint**: `/cgi-bin/mbox-config?method=SET&section=ping_config`
 
@@ -26,11 +28,11 @@ A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.
 
 *   **Impact**: Execute arbitrary system commands, read sensitive files, or take full control of the device.
 
-*   **Reported by**: \[Your Name/Handle] (\[Your Email Address])
+*   **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
 
 ### Description
 
-The vulnerability originates in the `sub_441EC4` function handling the `ping_config` section. Analysis of the disassembly shows that a user-controlled parameter (likely related to the target IP/hostname for ping) is unsanitized and directly used in a command construction process.
+The vulnerability originates in the `sub_441EC4` function handling the `ping_config` section. Analysis of the disassembly shows that a user-controlled parameter is unsanitized and directly used in a command construction process.
 
 Key code flow:
 
@@ -43,6 +45,9 @@ Key code flow:
 3.  The constructed command is executed via `system_0(v8)`, with no input sanitization to block malicious command separators.
 
 This allows attackers to inject arbitrary commands by adding delimiters (e.g., `&&`, `;`, `|`) to the vulnerable parameter, as the input is directly concatenated into the executed system command.
+
+![PoC 2 Result: Root Directory Listing](./imgs/1.png)
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
 
 ## Proof of Concept (PoC)
 
@@ -91,25 +96,6 @@ Connection: close
 2.  Access `http://cflogin.cn/ping_test.txt` to view the contents of the `/etc` directory.
 
 *   **Result**: The output of `ls /etc` is written to `/www-comfast/ping_test.txt`, confirming arbitrary command execution.
+*   
+![PoC 2 Result: Root Directory Listing](./imgs/3.png)
 
-## Affected Versions
-
-
-
-*   COMFAST CF-N1 V2 V2.6.0 (other versions may also be affected; verification recommended)
-
-## Mitigation Recommendations
-
-
-
-1.  **Input Sanitization**: Implement strict validation on the vulnerable parameter (e.g., `ping_target`), allowing only valid IP addresses or hostnames. Reject inputs containing command delimiters (`;`, `&&`, `|`, `&`, `$`, backticks, etc.).
-
-2.  **Command Execution Hardening**: Avoid directly concatenating user input into system commands. Use safe alternatives such as parameterized functions or whitelisted command templates that separate user input from executable code.
-
-3.  **Least Privilege**: Restrict the permissions of the `webmgnt` process to minimize the impact of successful exploitation (e.g., prevent write access to critical system directories).
-
-4.  **Firmware Update**: Release a patched firmware version addressing the input validation flaws and prompt users to upgrade immediately.
-
-This vulnerability follows a similar pattern to the previously identified `multi_pppoe` command injection, highlighting a potential pattern of insufficient input sanitization in the device's configuration handling logic.
-
-> （注：文档部分内容可能由 AI 生成）
