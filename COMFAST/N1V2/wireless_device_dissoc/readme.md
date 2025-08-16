@@ -1,9 +1,5 @@
-# COMFAST CF-N1 V2 V2.6.0 Command Injection in \`wireless\_device\_dissoc\`
-
-Setting up the environment using tools like qemu may be difficult; it is recommended to purchase a physical device.
-
 # COMFAST CF-N1 V2 V2.6.0 Command Injection in `wireless_device_dissoc`
-
+Setting up the environment using tools like qemu may be difficult; it is recommended to purchase a physical device.
 ## Overview
 
 A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.0) within the `wireless_device_dissoc` API (`/usr/bin/webmgnt`, function `sub_415F54`). Attackers can inject arbitrary commands via the `mac` parameter, enabling unauthorized execution of system commands, access to sensitive information, or full compromise of the device.
