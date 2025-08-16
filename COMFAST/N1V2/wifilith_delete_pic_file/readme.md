@@ -1,8 +1,6 @@
-# COMFAST CF-N1 V2 V2.6.0 Command Injection in \`wifilith\_delete\_pic\_file\`
+# COMFAST CF-N1 V2 V2.6.0 Command Injection in `wifilith_delete_pic_file`
 
 Setting up the environment using tools like qemu may be difficult; it is recommended to purchase a physical device.
-
-# COMFAST CF-N1 V2 V2.6.0 Command Injection in `wifilith_delete_pic_file`
 
 ## Overview
 
