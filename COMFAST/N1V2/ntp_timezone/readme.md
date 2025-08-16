@@ -1,5 +1,3 @@
-# COMFAST CF-N1 V2 V2.6.0 Command Injection in \`ntp\_timezone\`
-
 Setting up the environment using tools like qemu may be difficult; it is recommended to purchase a physical device.
 
 # COMFAST CF-N1 V2 V2.6.0 Command Injection in `ntp_timezone`
