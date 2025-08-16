@@ -96,8 +96,5 @@ Connection: close
 
 *   **Result**: The file `/www-comfast/test.txt` is created with the content "update", confirming successful command injection.
 
-![Command Injection](./imgs/3.png)
-
 ![PoC Execution Result](./imgs/3.png)
 
-> （注：文档部分内容可能由 AI 生成）
