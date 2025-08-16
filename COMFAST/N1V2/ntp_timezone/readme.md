@@ -3,6 +3,7 @@
 # COMFAST CF-N1 V2 V2.6.0 Command Injection in `ntp_timezone`
 PS:
 1.Setting up the environment using tools like qemu may be difficult; it is recommended to purchase a physical device.
+
 2.This vulnerability can be combined with CVE-2022-45724 to achieve unauthenticated RCE.
 
 ## Overview
