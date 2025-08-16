@@ -1,8 +1,6 @@
-# COMFAST CF-N1 V2 V2.6.0 Command Injection in \`update\_interface\_png\`
+# COMFAST CF-N1 V2 V2.6.0 Command Injection in `update_interface_png`
 
 Setting up the environment using tools like qemu may be difficult; it is recommended to purchase a physical device.
-
-# COMFAST CF-N1 V2 V2.6.0 Command Injection in `update_interface_png`
 
 ## Overview
 
