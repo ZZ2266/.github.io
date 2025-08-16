@@ -1,4 +1,5 @@
 # COMFAST CF-XR11 V2.7.2 Command Injection in `multi_pppoe`
+ps：This vulnerability can be combined with CVE-2022-45724 to achieve unauthenticated RCE.
 
 ## Overview
 The COMFAST CF-XR11 is an 1800Mbps smart MESH router supporting multiple WAN configurations (e.g., PPPoE, DHCP, static IP) and Wi-Fi Portal authentication.
