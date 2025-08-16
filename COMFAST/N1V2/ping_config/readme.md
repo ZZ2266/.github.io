@@ -76,15 +76,15 @@ Connection: close
 ```
 
 
-*   **Assumptions**: The vulnerable parameter is named `ping_target` (adjust if the actual parameter name differs based on further analysis).
+*   **Assumptions**: The vulnerable parameter is named `destination` (adjust if the actual parameter name differs based on further analysis).
 
 *   **Steps**:
 
 1.  Send the POST request using `curl`, Burp Suite, or similar tools.
 
-2.  Access `http://cflogin.cn/ping_test.txt` to view the contents of the `/etc` directory.
+2.  Access `http://cflogin.cn/test.txt` to view the contents of the `/etc` directory.
 
-*   **Result**: The output of `ls /etc` is written to `/www-comfast/ping_test.txt`, confirming arbitrary command execution.
+*   **Result**: The output of `ls /etc` is written to `/www-comfast/test.txt`, confirming arbitrary command execution.
 *   
 ![PoC 2 Result: Root Directory Listing](./imgs/3.png)
 
