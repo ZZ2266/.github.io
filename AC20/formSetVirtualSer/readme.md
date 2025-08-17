@@ -20,7 +20,7 @@ A stack-based buffer overflow vulnerability in the Tenda AC20 router (firmware V
 
 *   **Vulnerability Type**: Stack-Based Buffer Overflow (CWE-121)
 
-*   **CVE ID**: Pending
+*   **CVE ID**: CVE-2025-9088
 
 *   **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
 
