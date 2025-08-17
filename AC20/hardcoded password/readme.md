@@ -18,7 +18,7 @@ A hardcoded credentials vulnerability exists in the Tenda AC20 router (firmware 
 
 *   **Vulnerability Type**: Use of Hardcoded Credentials (CWE-798)
 
-*   **CVE ID**: Pending
+*   **CVE ID**: CVE-2025-9091
 
 *   **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
 
