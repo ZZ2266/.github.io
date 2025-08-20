@@ -5,8 +5,8 @@
 A command injection vulnerability exists in the `action_set_system_settings` function of the `system.lua` file in Tenda G103 GPON optical network terminals. The vulnerability arises due to improper sanitization of the `lanIp` parameter, which is directly concatenated into system commands without validation. Authenticated attackers can exploit this to execute arbitrary system commands with root privileges, leading to full device compromise.
 
 You can use FirmAE to simulate the environment:
-![](./imgs/1.png)
-![](./imgs/2.png)
+![](./imgs/6.png)
+![](./imgs/7.png)
 
 ## Details
 
