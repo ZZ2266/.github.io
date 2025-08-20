@@ -4,6 +4,10 @@
 
 A command injection vulnerability exists in the `action_set_system_settings` function of the `system.lua` file in Tenda G103 GPON optical network terminals. The vulnerability arises due to improper sanitization of the `lanIp` parameter, which is directly concatenated into system commands without validation. Authenticated attackers can exploit this to execute arbitrary system commands with root privileges, leading to full device compromise.
 
+You can use FirmAE to simulate the environment:
+![](./imgs/1.png)
+![](./imgs/2.png)
+
 ## Details
 
 
@@ -26,13 +30,15 @@ A command injection vulnerability exists in the `action_set_system_settings` fun
 
 *   **Impact**: Arbitrary command execution, sensitive data leakage, device configuration tampering, or complete takeover
 
+*   **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
+
 ## Vulnerability Analysis
 
 The `action_set_system_settings` function handles the `lanIp` parameter (used to configure the LAN interface IP address). The parameter is directly passed to system commands such as `ifconfig`, `fw_setenv`, and `uci` without sanitization or validation.
 
 Key vulnerable code in `system.lua`:
 
-![PoC 2 Result: Root Directory Listing](./imgs/0.png)
+![](./imgs/3.png)
 
 Attackers can inject arbitrary commands by including shell metacharacters (e.g., backticks `` ` ``, semicolons `;`, or `&&`) in the `lanIp` parameter. These characters are not filtered, allowing the injected commands to be parsed and executed by the system shell.
 
@@ -71,5 +77,5 @@ authPassword=1`touch$IFS/tmp/setting.txt`
 
 The file `/tmp/lanip_inject.txt` is created, confirming successful execution of the injected `touch` command.
 
-![PoC 2 Result: Root Directory Listing](./imgs/1.png)
-![PoC 2 Result: Root Directory Listing](./imgs/2.png)
+![](./imgs/4.png)
+![](./imgs/5.png)
