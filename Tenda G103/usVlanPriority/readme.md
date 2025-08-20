@@ -52,19 +52,8 @@ Key vulnerable code in `gpon.lua`:
 
 
 
-```
-local usVlanPriority = luci.http.formvalue("usVlanPriority")
 
-local modeOption = luci.http.formvalue("modeOption")
 
-\-- When modeOption is 2 or 3 (manual VLAN mode)
-
-if 2 == tonumber(modeOption) or 3 == tonumber(modeOption) then
-
-&#x20;   luci.util.exec(string.format("fw\_setenv us\_vlan\_priority \\"%s\\"", usVlanPriority))
-
-end
-```
 
 Attackers can inject arbitrary commands by embedding shell metacharacters (e.g., backticks `` ` ``, semicolons `;`, or `&&`) in the `usVlanPriority` parameter. Since these characters are not filtered, the injected payload is parsed and executed by the system shell when the command runs—specifically when `modeOption` is set to 2 or 3.
 
