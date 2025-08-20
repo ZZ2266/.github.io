@@ -32,7 +32,7 @@ The `action_set_system_settings` function handles the `lanIp` parameter (used to
 
 Key vulnerable code in `system.lua`:
 
-![](./imgs/0.png)
+![PoC 2 Result: Root Directory Listing](./imgs/0.png)
 
 Attackers can inject arbitrary commands by including shell metacharacters (e.g., backticks `` ` ``, semicolons `;`, or `&&`) in the `lanIp` parameter. These characters are not filtered, allowing the injected commands to be parsed and executed by the system shell.
 
@@ -71,5 +71,5 @@ authPassword=1`touch$IFS/tmp/setting.txt`
 
 The file `/tmp/lanip_inject.txt` is created, confirming successful execution of the injected `touch` command.
 
-![](./imgs/1.png)
-![](./imgs/2.png)
+![PoC 2 Result: Root Directory Listing](./imgs/1.png)
+![PoC 2 Result: Root Directory Listing](./imgs/2.png)
