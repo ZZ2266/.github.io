@@ -50,17 +50,6 @@ Key vulnerable code in `gpon.lua`:
 
 
 
-```
-local authLoid = luci.http.formvalue("authLoid")
-
-if authLoid then
-
-&#x20;   luci.util.exec(string.format("fw\_setenv omci\_loid \\"%s\\"", authLoid))
-
-&#x20;   luci.util.exec(string.format("uci set gpon.ploam.nloid=\\"%s\\"", authLoid))
-
-end&#x20;
-```
 
 Attackers can inject arbitrary commands by embedding shell metacharacters (e.g., backticks `` ` ``, semicolons `;`, or logical operators `&&`) in the `authLoid` parameter. These characters are not filtered, allowing the injected payload to be parsed and executed by the system shell when the concatenated commands are run.
 
