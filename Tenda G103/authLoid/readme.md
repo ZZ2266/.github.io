@@ -99,16 +99,3 @@ The file `/tmp/authLoid.txt` is created, confirming successful execution of the 
 
 ![PoC Result 2](./imgs/5.png)
 
-## Mitigation Recommendations
-
-
-
-1.  **Input Validation**: Restrict `authLoid` to a safe character set (e.g., alphanumerics) and enforce length limits consistent with LOID standards.
-
-2.  **Command Escaping**: Use `luci.util.shellquote` to escape the parameter before inserting it into system commands (e.g., `string.format("fw_setenv omci_loid \"%s\"", luci.util.shellquote(authLoid))`).
-
-3.  **Secure Configuration Handling**: Use LuCI’s built-in UCI API for configuration management instead of direct system command calls.
-
-4.  **Least Privilege**: Run processes executing these commands with minimal required privileges to limit exploitation impact.
-
-> （注：文档部分内容可能由 AI 生成）
