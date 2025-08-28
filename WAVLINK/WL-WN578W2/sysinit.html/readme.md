@@ -14,7 +14,6 @@ A critical unverified password change vulnerability exists in `sysinit.html` (WA
 
 
 
-![Vulnerability Flow](./imgs/15.png)
 
 ## Details
 
@@ -58,7 +57,9 @@ A critical unverified password change vulnerability exists in `sysinit.html` (WA
 3.Log in via `login.html` with `123456789`—success confirms password change.
 
 
-
+![Login Success with New Password](./imgs/1.png)
+![Login Success with New Password](./imgs/2.png)
+![Login Success with New Password](./imgs/3.png)
 ![Login Success with New Password](./imgs/1.mp4)
 
 
