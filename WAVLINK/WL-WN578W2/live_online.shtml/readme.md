@@ -37,4 +37,4 @@ visit /live_online.shtml
 
 
 
-![](./imgs/1.mp4)
+![](./imgs/1.png)
