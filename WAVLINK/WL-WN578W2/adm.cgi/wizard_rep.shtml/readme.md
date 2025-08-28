@@ -75,8 +75,6 @@ After successful login, the `sel_EncrypTyp` parameter (extracted from POST reque
 
 
 
-*   Log in to the WAVLINK device via the web interface (e.g., `http://192.168.10.1`), use tools like Burp Suite to capture the login session cookie (e.g., `WAVLINK_SESSIONID=xxxx`).
-
 *   Start a Netcat listener on the attacker machine (IP: 192.168.10.154, Port: 1234) to monitor command execution results:
 
 
