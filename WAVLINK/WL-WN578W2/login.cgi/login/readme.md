@@ -10,7 +10,7 @@ PS:
 
 ## Overview
 
-A command injection vulnerability exists in the login module of WAVLINK WL-WN578W2 (firmware version: M78W2\_V221110). The vulnerability resides in the `ftext` function (entry point) and `sub_401340` function (core login logic) within the `login.cgi` file, which processes the `ipaddr` parameter without input sanitization. When submitting a POST request to the `/cgi-bin/adm.cgi` (a program for handling login requests on the device) endpoint with the `page=login` action, authenticated attackers can inject arbitrary system commands via the `ipaddr` parameter. This enables unauthorized execution of system commands, access to sensitive device information, or full compromise of the device.
+A command injection vulnerability exists in the login module of WAVLINK WL-WN578W2 (firmware version: M78W2\_V221110). The vulnerability resides in the `ftext` function (entry point) and `sub_401340` function (core login logic) within the `login.cgi` file, which processes the `ipaddr` parameter without input sanitization. When submitting a POST request to the `/cgi-bin/login.cgi` (a program for handling login requests on the device) endpoint with the `page=login` action, authenticated attackers can inject arbitrary system commands via the `ipaddr` parameter. This enables unauthorized execution of system commands, access to sensitive device information, or full compromise of the device.
 
 
 
@@ -30,7 +30,7 @@ A command injection vulnerability exists in the login module of WAVLINK WL-WN578
 
 *   **Firmware Download**: Available via WAVLINK official website or device web management interface
 
-*   **Affected Endpoint**: `/cgi-bin/adm.cgi` (POST method, a program for processing device login requests)
+*   **Affected Endpoint**: `/cgi-bin/login.cgi` (POST method, a program for processing device login requests)
 
 *   **Vulnerable Code**:
 
@@ -137,6 +137,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=%3A%3Affff%3A192.168.10.15
 
 
 ![PoC Result: Right Password Hash (Success)](./imgs/5.png)
+
 
 
 
