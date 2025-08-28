@@ -79,20 +79,7 @@ The `sub_401340` function handles credential verification and post-login configu
 
 *   **Credential Verification**: Compares the encrypted `password` parameter from the request with the device’s stored credentials (retrieved via `wlink_uci_get_value`). Only after successful verification does the function proceed to the command construction step.
 
-*   **Vulnerable Command Construction**: After passing credential checks, the function constructs a system command using `sprintf` and executes it via `system`:
-
-
-
-```
-memset(v35, 0, sizeof(v35));
-
-// Concatenate "ipaddr" (v9) directly into the command string
-
-sprintf(v35, "/sbin/applogin.sh del %s >/dev/null 2>&1", v9);&#x20;
-
-system(v35); // Execute the unsanitized command
-```
-
+*   **Vulnerable Command Construction**: After passing credential checks, the function constructs a system command using `sprintf` and executes it via `system`
 
 
 *   **Root Cause**: The `ipaddr` parameter (`v9`) is not filtered for command delimiters (e.g., `;` for command separation, `&&` for logical AND, `|` for pipe, `#` for comment). Attackers can use these delimiters to "break out" of the original `applogin.sh`` del` command context and append arbitrary malicious commands.
@@ -150,5 +137,6 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=%3A%3Affff%3A192.168.10.15
 
 
 ![PoC Result: Right Password Hash (Success)](./imgs/5.png)
+
 
 
