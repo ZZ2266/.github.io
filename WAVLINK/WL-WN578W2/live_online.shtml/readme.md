@@ -16,7 +16,7 @@ An **unauthenticated sensitive information disclosure vulnerability** exists in 
 
 *   **Firmware**: M78W2\_V221110
 
-*   **Firmware Download**: [htt](https://docs.wavlink.xyz/Firmware_ch/fm-578w2/)[ps:/](https://docs.wavlink.xyz/Firmware_ch/fm-578w2/)
+*   **Firmware Download**: https://docs.wavlink.xyz/Firmware_ch/fm-578w2/
 
 *   **Affected Endpoint**: `/live_online.shtml` (GET method, no authentication required)
 
