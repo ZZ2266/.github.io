@@ -6,7 +6,7 @@ PS:
 
 1.  QEMU simulation is difficult; use a physical WAVLINK WL-WN578W2 for testing.
 
-2.  **Authenticated access required**: Attackers need valid login credentials (e.g., username/password) to send requests to `/cgi-bin/adm.cgi`, but weak input filters can still be bypassed for command injection.
+2.  **Authenticated access required**: Attackers need valid login credentials (e.g., username/password) to send requests to `/cgi-bin/adm.cgi`, but weak input filters can still be bypassed for command injection.The session does not pass a cookie, but it is confirmed that the attack cannot succeed without logging in, and the reason is unknown.
 
 ## Overview
 
