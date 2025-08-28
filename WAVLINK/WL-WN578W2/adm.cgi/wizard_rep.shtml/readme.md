@@ -65,6 +65,7 @@ After successful login, the `sel_EncrypTyp` parameter (extracted from POST reque
 
 ![Weak Filter Logic Snippet](./imgs/2.png)
 ![Weak Filter Logic Snippet](./imgs/3.png)
+![Weak Filter Logic Snippet](./imgs/4.png)
 
 ## Proof of Concept (PoC)
 
