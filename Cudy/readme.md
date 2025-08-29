@@ -14,7 +14,7 @@ An insecure default password vulnerability was identified in the Cudy WR1200EA r
   - Information Disclosure
   - Potential Code Execution
 - **Affected Component**: `/etc/shadow` file, root user authentication mechanism
-- **CVE ID**: Pending (CVE application in progress)
+- **CVE ID**: CVE-2025-9589
 - **Discovered by**: n0ps1ed (n0ps1edzz@gmail.com)
 - **firmware**: https://www.cudy.com/zh-cn/pages/download-center/wr1200e-1-0
 
