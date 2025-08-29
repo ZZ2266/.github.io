@@ -32,7 +32,7 @@ A command injection vulnerability exists in the COMFAST CF-N1 V2 (firmware V2.6.
 
 *   **Vulnerability**: Command Injection
 
-*   **CVE ID**: Pending
+*   **CVE ID**: CVE-2025-9581
 
 *   **Impact**: Execute arbitrary system commands, read sensitive files, or take full control of the device.
 
