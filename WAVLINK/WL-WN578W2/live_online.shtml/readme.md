@@ -24,7 +24,7 @@ An **unauthenticated sensitive information disclosure vulnerability** exists in 
 
 *   **Vulnerability Type**: Unauthenticated Sensitive Information Disclosure
 
-*   **Impact**: Exposes full network device inventory with identities/addresses, allowing attackers to map network topology, identify target devices, and launch precise exploits (e.g., command injection, password attacks).
+*   **Impact**: Exposes full network device inventory with identities/addresses
 
 ## Proof
 
